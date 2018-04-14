@@ -30,6 +30,7 @@ import { /*  *  *     MIXINS    *   *   */
   localDataConsumer
 } from "./mixins";
 
+import models from "./models"; // import/export default object
 
 let components={
   card,
@@ -68,7 +69,8 @@ export default{
 export{
   Bulma,
   localDataConsumer,
-
+  models,
+  
   card,
   CardHeader,
 

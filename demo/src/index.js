@@ -18,9 +18,9 @@ const config={
 // config.router=new VueRouter({ mode: 'hash', routes })
 
 /* * *    VUEX - STORE    * * */
-// import Vuex from "vuex";
-// import storeConfig from './store/store.js';
-// Vue.use( Vuex );
-// config.store=new Vuex.Store( storeConfig );
+import Vuex from "vuex";
+import storeConfig from './store.js';
+Vue.use( Vuex );
+config.store=new Vuex.Store( storeConfig );
 
 new Vue( config );
