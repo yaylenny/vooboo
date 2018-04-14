@@ -1,7 +1,7 @@
 <script>
-  import item from "../item.vue";
+  import { Bulma } from "Mixins";
   export default{
-    mixins:[ item ],
+    mixins:[ Bulma('checkbox') ],
     props: {
     },
     data(){

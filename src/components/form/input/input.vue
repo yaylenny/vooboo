@@ -1,11 +1,19 @@
 <script>
   import { Bulma } from "Mixins";
-  import text from "./base/text.vue";
-  import icon from "../icon/icon.vue"
+  import icon from "../../icon/icon.vue"
+  let passEvents=['focus', 'blur', 'change', 'keydown', 'keyup' ];
 
+  let methods=passEvents.reduce(( o, name )=>{
+    return Object.assign({}, o,{
+      [name]( ...args ){
+        if( this.$refs.input ){
+          this.$nextTick( this.$refs.input[name]( ...args ));
+        }
+      }
+    })
+  }, {});
   export default{
-    // modifiers:['colors','sizes','states','styles' ],
-    mixins:[ Bulma('input'), text ],
+    mixins:[ Bulma('input') ],
     data(){
       return{
         baseClass: this.type==='textarea' ? 'textarea' : 'input',
@@ -16,6 +24,8 @@
       // iconsLeft: [ String, Array ],
       // iconsRight: [ String, Array ],
       // icon: String,
+      placeholder: String,
+      type:{ type: String, default: 'text'},
       rows:[String,Number],
       columns:[String,Number]
     },
@@ -52,58 +62,34 @@
       'vue-icon': icon
     },
     methods:{
+      ...methods,
+      bindEvents(){
+        let $el=this.$refs.input;
+        if( !$el ) return console.log( 'cannot bind events, input ref not found')
+        passEvents.forEach( name=>{
+          let fn=e=>this.$emit( name, e );
+          this.$set( this.listeners, name, fn );
+          $el.addEventListener( name, fn );
+        });
+      },
+      unbindEvents(){
+        let $el=this.$refs.input;
+        if( !$el ) return;
+        passEvents.forEach( name=>{
+          $el.removeEventListener( name, this.listeners[ name ]);
+        });
+      },
       getIcons( side="right"){
         let icons=this[ side==='right' ? 'iconsRight' : 'iconsLeft'];
         return icons && ( Array.isArray( icons ) ? icons : [ icons ]);
       }
     },
-    watch:{
+    mounted(){
+      this.bindEvents();
     },
     destroyed(){
-      // this.unbindEvents();
-    },
-    mounted(){
-    },
-    // render( h ){
-    //   let tag=this.type==='textarea' ? 'textarea' : 'input';
-    //   let attrs={ placeholder: this.placeholder };
-    //   if( tag==='textarea' ){
-    //     if( this.rows ) attrs.rows=this.rows;
-    //     if( this.columns ) attrs.columns=this.columns;
-    //   }
-    //   else{
-    //     attrs.type=this.type;
-    //   }
-    //   let icons=this.allIcons.map(({ fa, right }, index )=>h( icon, {
-    //     key: index,
-    //     props:{
-    //       icon: fa,
-    //       isRight: right,
-    //       isLeft: !right,
-    //       isSmall: this.isSmall,
-    //       isMedium: this.isMedium,
-    //       isLarge: this.isLarge
-    //
-    //     }
-    //   }));
-    //   console.log(' ALLL ', this.allIcons )
-    //   return h( 'div', { class: this.controlClass },
-    //     [
-    //       h( tag, {
-    //         ref: 'input',
-    //         class: this.classList,
-    //         attrs,
-    //         props:{
-    //           value: this.value,
-    //         },
-    //         on:{
-    //           change: this.onInput
-    //         }
-    //       }),
-    //       icons
-    //     ]
-    //   )
-    // }
+      this.unbindEvents();
+    }
   }
 </script>
 <template>

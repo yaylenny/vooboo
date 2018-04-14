@@ -1,13 +1,22 @@
 <script>
   import { Bulma } from "Mixins";
-  import ButtonIcon from "../icon.vue";
+  import ButtonIcon from "../../icon/icon.vue";
   export default{
     baseClass: 'button',
     mixins:[ Bulma('button') ],
     components:{ ButtonIcon },
+    computed:{
+      mediumIcon(){
+        return this.isMedium || this.isLarge;
+      },
+      smallIcon(){
+        return !(this.mediumIcon);
+      }
+    },
     props:{
       icon: String,
-      text: String
+      text: String,
+      iconOnly: Boolean
     }
   }
 </script>
@@ -16,13 +25,10 @@
     <button
       :class="classList"
       @click="$emit( 'click', $event )">
-      <button-icon v-if="icon"
-        :is-small="isSmall"
-        :is-medium="isMedium"
-        :is-large="isLarge">
+      <button-icon v-if="icon">
         {{icon}}
       </button-icon>
-      <slot>{{text}}</slot>
+      <span v-if="!iconOnly"><slot>{{text}}</slot></span>
     </button>
   </div>
 </template>

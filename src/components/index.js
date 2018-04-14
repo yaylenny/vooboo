@@ -8,6 +8,10 @@ import { /*  *  *     ICON    *   *   */
   icon
 } from "./icon";
 
+import { /*  *  *     TABLE    *   *   */
+  table
+} from "./table";
+
 import { /*  *  *     FORM    *   *   */
   autocomplete,
   button,
@@ -19,7 +23,7 @@ import { /*  *  *     FORM    *   *   */
   input,
   radio,
   select,
-  tagsInput
+  TagsInput
 } from "./form";
 
 import { /*  *  *     PANEL    *   *   */
@@ -28,6 +32,7 @@ import { /*  *  *     PANEL    *   *   */
   PanelTabs,
   PanelBlock
 } from "./panel";
+
 
 
 export{
@@ -45,10 +50,12 @@ export{
   input,
   radio,
   select,
-  tagsInput
+  TagsInput,
 
   panel,
   PanelHeading,
   PanelTabs,
-  PanelBlock
+  PanelBlock,
+
+  table
 };

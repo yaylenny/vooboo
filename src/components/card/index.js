@@ -4,4 +4,4 @@ import CardHeader from "./header.vue";
 export{
   card,
   CardHeader
-}
+};

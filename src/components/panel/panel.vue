@@ -1,7 +1,8 @@
 <script>
-  import  from "./card.vue";
-  import PanelHeading from "./header.vue";
+  import PanelHeading from "./heading.vue";
+  import { Bulma } from "Mixins";
   export default{
+    name: 'VooBooPanel',
     mixins:[ Bulma( 'panel' )],
     baseClass: 'panel',
     props: {

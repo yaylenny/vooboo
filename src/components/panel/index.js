@@ -1,5 +1,5 @@
-import panel from "./card.vue";
-import PanelHeading from "./header.vue";
+import panel from "./panel.vue";
+import PanelHeading from "./heading.vue";
 import PanelTabs from "./tabs.vue";
 import PanelBlock from "./block.vue";
 

@@ -1,7 +1,7 @@
 <script>
   export default{
     props: {
-      tabs: Array
+      tabs: Array,
       active:{}
     },
     data(){

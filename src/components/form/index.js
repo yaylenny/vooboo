@@ -6,7 +6,7 @@ import file from "./file/file.vue";
 import input from "./input/input.vue";
 import autocomplete from "./input/autocomplete.vue";
 import datepicker from "./input/datepicker.vue";
-import tagsInput from "./input/tags.vue";
+import TagsInput from "./input/tags.vue";
 import radio from "./radio/radio.vue";
 import select from "./select/select.vue";
 
@@ -21,5 +21,5 @@ export{
   input,
   radio,
   select,
-  tagsInput
+  TagsInput
 };

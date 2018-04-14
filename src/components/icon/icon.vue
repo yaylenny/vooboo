@@ -25,26 +25,29 @@
     components:{},
     computed:{
       iconClass(){
-        let icon=this.icon || this.$slots.default[0].text;
-        console.log( 'icon', icon );
-        icon=icon.trim();
-        return this.base+icon;
+        return this.base+this.iconString;
+      },
+      iconString(){
+        return (this.icon || this.$slots.default[0].text).trim();
       },
       wrapperClass(){
         let ret=['icon']
-          .concat( this.firstOf(['isSmall','isMedium','isLarge']))
-          .concat( this.firstOf(['isLeft','isRight']));
+          .concat( this.firstOf('isSmall','isMedium','isLarge'))
+          .concat( this.firstOf('isLeft','isRight'));
         return ret;
       }
     },
     methods:{
       firstOf( ...props ){
         return props.reduce(( arr, prop )=>{
-          if( !arr.length && this[ prop ]) arr[0]=kebabCase( prop );
+          if( !arr.length && this[ prop ]) return [kebabCase( prop )];
+          return arr;
         }, []);
       }
     },
     created(){},
+    mounted(){
+    },
     watch:{}
   }
 </script>
