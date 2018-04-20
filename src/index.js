@@ -15,6 +15,8 @@ import {
   radio,
   select,
   TagsInput,
+  dropdown,
+  modal,
 
   panel,
   PanelHeading,
@@ -54,6 +56,9 @@ let components={
   PanelTabs,
   PanelBlock,
 
+  dropdown,
+  modal,
+
   table
 };
 
@@ -70,7 +75,7 @@ export{
   Bulma,
   localDataConsumer,
   models,
-  
+
   card,
   CardHeader,
 
@@ -86,6 +91,9 @@ export{
   radio,
   select,
   TagsInput,
+
+  dropdown,
+  modal,
 
   panel,
   PanelHeading,

@@ -8,6 +8,14 @@ import { /*  *  *     ICON    *   *   */
   icon
 } from "./icon";
 
+import { /*  *  *     DROPDOWN    *   *   */
+  dropdown
+} from "./dropdown";
+
+import { /*  *  *     MODAL    *   *   */
+  modal
+} from "./modal";
+
 import { /*  *  *     TABLE    *   *   */
   table
 } from "./table";
@@ -51,6 +59,8 @@ export{
   radio,
   select,
   TagsInput,
+
+  modal,
 
   panel,
   PanelHeading,

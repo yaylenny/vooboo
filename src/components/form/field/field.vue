@@ -80,7 +80,9 @@
 
 <template>
   <component :is="component" :class="fieldClass">
-    <label slot="label" class="label" v-if="label">{{label}}</label>
+    <slot name="label">
+      <label slot="label" class="label" v-if="label">{{label}}</label>
+    </slot>
     <slot>
     </slot>
 
