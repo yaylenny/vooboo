@@ -73,7 +73,7 @@ let getProps=( id, modifiers )=>{
       return o;
     }, {});
   if( isForm( id )){
-    assign( props,{ name: String, value: {}});
+    assign( props,{ name: String, label: String, value: {}});
   }
   return props;
 };
@@ -81,6 +81,7 @@ let getProps=( id, modifiers )=>{
 let formMixin={
   props:{
     name: String,
+    label: String,
     value: {}
   },
   methods:{

@@ -1,8 +1,6 @@
 <script>
   export default{
-    props: {
-      title: String
-    },
+    props: {},
     data(){
       return {};
     },
@@ -14,6 +12,11 @@
   }
 </script>
 <template lang="pug">
-  p.panel-heading
-    slot( name="title" ) {{title}}
+  .dropdown( :class="{ 'is-active': isActive }")
+    .dropdown-trigger
+      slot( name="trigger")
+    .dropdown-menu( role="menu")
+      .dropdown-content
+        slot
+
 </template>

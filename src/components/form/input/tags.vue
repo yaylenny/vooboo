@@ -38,8 +38,13 @@
     },
     methods:{
       deleteTag( tag ){
-        let index=this.local.tags.find( t=>t===tag );
-        if( index >= 0 ) this.local.tags.splice( index, 1 );
+        tag=tag.trim();
+        let index=this.local.tags.findIndex( t=>t===tag );
+        if( index >= 0 ){
+          this.local.tags.splice( index, 1 );
+          this.$emit('input', this.local.tags );
+        }
+        else console.log( 'tag not found', tag , this.local.tags)
       },
       onClick( e ){
         if( this.$refs.input ){
@@ -57,7 +62,6 @@
         if( tag ){
           let arr=[ tag ];
           if( tag.includes(',')) arr=tag.split(',');
-          console.log( 'arr is', arr );
           arr.forEach( t=>{
             if( tags.indexOf( t ) <0 ){
               tags.push( t );
@@ -75,7 +79,10 @@
       this.writeActiveData();
     },
     watch:{
-      tags: 'writeActiveData'
+      tags: 'writeActiveData',
+      value( arr ){
+        this.local.tags=arr.slice().map( n=>n.trim());
+      }
     }
   }
 </script>
@@ -88,7 +95,7 @@
         .control( v-for="tag in local.tags")
           .tags.has-addons
             span.tag.is-primary {{tag}}
-            a.tag.is-delete.is-dark( @click.stop="deleteTag( tag )" )
+            a.tag.is-delete.is-dark( @click.stop.prevent="deleteTag( tag )" )
         input.input.is-small.tag-input( v-model="local.tag"
           ref="input"
           @focus="onFocus"

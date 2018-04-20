@@ -3,6 +3,7 @@
   export default{
     mixins:[ Bulma('checkbox') ],
     props: {
+      label: String
     },
     data(){
       return {};
@@ -18,7 +19,7 @@
   <div class="control">
     <label class="checkbox">
       <input type="checkbox" :checked="value" @change="onInput( $event.target.checked )" />
-      {{label}}
+      <slot>{{label}}</slot>
     </label>
   </div>
 </template>

@@ -5,7 +5,7 @@
     storage=(()=>{
       let fail={};
       return{
-         getItem:n=>fail[n],
+         getItem:n=>fail[n] || null,
          setItem:(n,v)=>fail[n]=v
       }
     })();
@@ -41,15 +41,23 @@
       },
       loadLocalData( prop, checkAuto ){
         if( !hasIn( this.localDataConfig, prop )) return console.error('prop not found', prop );
-        let { key, type, autoLoad }=this.localDataConfig[ prop ];
+        let local=this.localDataConfig[ prop ];
+        let { key, type, autoLoad }=local;
         if( checkAuto && !autoLoad ) return;
         let value=this.getItem( key );
-        try{ value=JSON.parse( value )} catch( e ){}
-        if( !( isNull( value ) || isUndefined( value )) ) this[ prop ]=value;
+        if( value===null && local.default ){
+          this.storeLocalData( prop, local.default );
+        }
+        else{
+          try{ value=JSON.parse( value )} catch( e ){}
+          if( !( isNull( value ) || isUndefined( value )) ) this[ prop ]=value;
+          console.log( 'load data', prop, value )
+        }
       },
-      storeLocalData( prop ){
+      storeLocalData( prop, value=null ){
+        value=value===null ? this[ prop ] : value;
         let { key }=this.localDataConfig[ prop ];
-        if( key ) this.setItem( key, this[ prop ] );
+        if( key ) this.setItem( key, value );
       },
       setItem( key, value ){
         [ isArray, isObject ].forEach( f=>{
@@ -59,10 +67,12 @@
           }
         });
         storage.setItem( key, value );
+        return value;
       },
       setupLocalData(){
         let localData=this.$options.localData || this.localData;
         if( isObject( localData )){
+          console.log( 'setting up local data', localData )
           keys( localData ).forEach( prop=>{
             let opt=localData[ prop ];
             if( isString( opt )) opt={ key: opt };
@@ -72,6 +82,7 @@
                 autoLoad: true,
                 autoSave: true,
                 type: {},
+                default: '',
                 key: null
               }, opt );
               if( opt.key && hasIn( this, prop )){
