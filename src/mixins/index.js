@@ -7,6 +7,7 @@ const MODS={
   colors:['isPrimary','isInfo','isSuccess','isDanger','isWarning','isText','isDark','isLight', 'isWhite', 'isBlack'],
   icons: [ 'icon','iconsLeft','iconsRight'],
   sizes:[ 'isSmall','isNormal','isMedium','isLarge'],
+  sides:[ 'isCentered','isRight'],
   states:[ 'isHovered','isFocused','isLoading'],
   styles:[ 'isRounded' ],
   expanders:[ "isExpanded" ],

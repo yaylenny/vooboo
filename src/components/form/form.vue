@@ -1,6 +1,7 @@
 <script>
   import FormField from "./field/field.vue";
-  import { isPlainObject } from "lodash";
+  import FieldClass from "../../forms/fields/Field.js";
+  import { isPlainObject, assign, keys } from "lodash";
 
   let mods=[];
   export default{
@@ -17,7 +18,7 @@
         fields:{},
         form:{
           data:{},
-          fields:[],
+          fields:{},
           specs:{}
         }
       };
@@ -26,29 +27,28 @@
       FormField
     },
     computed:{
+      formFields(){
+
+      },
       isValid(){
         return true;
       }
     },
     methods:{
-      buildFormField( name, opt ){
-        opt=isPlainObject( opt ) ? opt : { type: opt };
-        return Object.assign({
-          required: false,
-          widget: 'auto'
-        }, opt, {
-          name
-        });
-      },
       buildFormFields(){
+        this.fields={};
         let Fields=Object.assign({}, this.$options.Fields || {}, this.Fields || {});
-        if( Fields ){
-          let { fields }=Fields;
-          if( fields && Array.isArray( fields )){
-            this.form.fields=fields.map( name=>this.buildFormField( name, Fields[ name ]))
+        Object.keys( Fields ).forEach( key=>{
+          if( Fields[key] instanceof FieldClass ){
+            this.fields[ key ]=Fields[key];
           }
-
-        }
+        })
+        // if( Fields ){
+        //   let { fields }=Fields;
+        //   if( fields && Array.isArray( fields )){
+        //     this.form.fields=fields.map( name=>this.buildFormField( name, Fields[ name ]))
+        //   }
+        // }
       },
       load( instance ){
 

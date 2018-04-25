@@ -16,9 +16,17 @@ import { /*  *  *     MODAL    *   *   */
   modal
 } from "./modal";
 
+import { /*  *  *     PAGINATION    *   *   */
+  pagination
+} from "./pagination";
+
 import { /*  *  *     TABLE    *   *   */
   table
 } from "./table";
+
+import { /*  *  *     TREE    *   *   */
+  tree
+} from "./tree";
 
 import { /*  *  *     FORM    *   *   */
   autocomplete,
@@ -62,10 +70,13 @@ export{
 
   modal,
 
+  pagination,
+  
   panel,
   PanelHeading,
   PanelTabs,
   PanelBlock,
 
-  table
+  table,
+  tree
 };

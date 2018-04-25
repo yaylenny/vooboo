@@ -12,10 +12,10 @@ const config={
 };
 
 /* * *    VUE ROUTER    * * */
-// import VueRouter from 'vue-router';
-// import routes from './routes.js';
-// Vue.use( VueRouter );
-// config.router=new VueRouter({ mode: 'hash', routes })
+import VueRouter from 'vue-router';
+import routes from './routes.js';
+Vue.use( VueRouter );
+config.router=new VueRouter({ mode: 'hash', routes })
 
 /* * *    VUEX - STORE    * * */
 import Vuex from "vuex";

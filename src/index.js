@@ -18,12 +18,14 @@ import {
   dropdown,
   modal,
 
+  pagination,
   panel,
   PanelHeading,
   PanelTabs,
   PanelBlock,
 
-  table
+  table,
+  tree
 
 } from "./components";
 
@@ -33,6 +35,8 @@ import { /*  *  *     MIXINS    *   *   */
 } from "./mixins";
 
 import models from "./models"; // import/export default object
+import forms from "./forms"; // form fields ( as opposed to components below )
+
 
 let components={
   card,
@@ -51,6 +55,7 @@ let components={
   select,
   TagsInput,
 
+  pagination,
   panel,
   PanelHeading,
   PanelTabs,
@@ -59,12 +64,12 @@ let components={
   dropdown,
   modal,
 
-  table
+  table,
+  tree
 };
 
 export default{
   install( Vue, prefix="vb-" ){
-    console.log( 'installing vooboo', Object.keys( components ).join(', '));
     Object.keys( components ).forEach( key=>{
       Vue.component( prefix+kebabCase( key ), components[key]);
     })
@@ -74,6 +79,7 @@ export default{
 export{
   Bulma,
   localDataConsumer,
+  forms,
   models,
 
   card,
@@ -94,11 +100,12 @@ export{
 
   dropdown,
   modal,
-
+  pagination,
   panel,
   PanelHeading,
   PanelTabs,
   PanelBlock,
 
-  table
+  table,
+  tree
 }

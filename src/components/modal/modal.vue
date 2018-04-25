@@ -13,6 +13,9 @@
     methods:{
       close( ...args ){
         this.$emit('close', ...args );
+      },
+      onBackgroundClick(){
+        if( this.closeOnBackgroundClick ) this.close();
       }
     },
     created(){},
@@ -21,8 +24,8 @@
 </script>
 <template lang="pug">
   .modal( :class="{ 'is-active': isActive }")
-    .modal-background
-    .modal-content
+    .modal-background( @click="onBackgroundClick")
+    .modal-content( @click.stop="" )
       slot
-    button.modal-close( v-if="closable" @click="close")
+      button.modal-close( v-if="closable" @click="close")
 </template>

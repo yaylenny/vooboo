@@ -8,13 +8,6 @@
   export default{
     // mixins:[ item ],
     props: {
-      // choices: Array, // radio and select elements
-      // labelClass: String,
-      // addons: Array,
-      // addonsCentered: Array,
-      // addonsRight: Array,
-      // iconsLeft: Array,
-      // iconsRight: Array,
       required: Boolean,
       widget:{},
       label: String,

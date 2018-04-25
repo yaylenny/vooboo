@@ -30,6 +30,6 @@
         slot( name="icon" slot="icon")
     .card-content: slot
     slot( name="footer" )
-      card-footer( v-if="!isFooterless" )
+      card-footer( v-if="!isFooterless", :items="footerItems" )
         slot( name="footer-items" )
 </template>

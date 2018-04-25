@@ -17,8 +17,8 @@
     .hero.is-light
       .hero-body: .container
         h3.title Models
-        h4.subtitle Used in conjunction with vuex, models make like a lot fuckin' easier!
-    .columms
+        h4.subtitle Used in conjunction with vuex
+    .container: .columms
       .column.is-half
         .box
           h4.title.is-6 Creating models
