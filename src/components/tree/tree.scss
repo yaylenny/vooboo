@@ -1,0 +1,38 @@
+
+.vue-tree{
+  user-select: none;
+  font-size: 12px;
+  &.is-medium{ font-size: 20px; }
+  &.is-large{ font-size: 26px; }
+  &.is-xlarge{ font-size: 32px; }
+  .tree-icon{
+    display: inline-flex;
+    width: 1.5em;
+    height: 1.5em;
+    font-size: 1em;
+    align-items: center;
+    justify-content: center;
+    &.half-spacer{
+      width: .75em;
+    }
+    &.elbow-icon{
+      // font-size: .8em;
+    }
+  }
+  .tree-branch{
+    .tree-leaf{
+      display: flex;
+      align-items: center;
+      .tree-label{
+        display: flex;
+        align-items: center;
+        padding: .25em .5em;
+      }
+      &.is-active{
+        color: #fff;
+        background: rgb(8, 65, 125);
+      }
+
+    }
+  }
+}
