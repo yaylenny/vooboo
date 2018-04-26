@@ -3,6 +3,7 @@
   import moment from "moment";
   import TableIcon from "../icon/icon.vue";
   import TableCell from "./td.vue";
+  import Pagination from "../pagination/pagination.vue";
   import editable from "./editable.vue";
 
   import { isString, isArray, assign, capitalize } from "lodash";
@@ -51,7 +52,8 @@
     },
     components:{
       TableIcon,
-      TableCell
+      TableCell,
+      'vb-pagination': Pagination
     },
     computed:{
       activeSortIcon(){
