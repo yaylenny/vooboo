@@ -1,6 +1,0 @@
-[submodule "src/components/vue-tree"]
-	path = src/components/vue-tree
-	url = https://github.com/yaylenny/vue-tree
-[submodule "src/components/tree"]
-	path = src/components/tree
-	url = https://github.com/yaylenny/vue-tree
