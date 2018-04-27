@@ -77,7 +77,7 @@
       selectNode(){
         this.$emit('select', this.nid );
         this.toggle();
-        console.log( 'branch node data', getNode( this.tid, this.nid ))
+        // console.log( 'branch node data', getNode( this.tid, this.nid ))
       }
     },
     created(){

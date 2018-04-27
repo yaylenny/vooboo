@@ -31775,7 +31775,7 @@ exports.default = {
     selectNode: function selectNode() {
       this.$emit('select', this.nid);
       this.toggle();
-      console.log('branch node data', (0, _trees.getNode)(this.tid, this.nid));
+      // console.log( 'branch node data', getNode( this.tid, this.nid ))
     }
   },
   created: function created() {
@@ -32141,6 +32141,7 @@ exports.default = {
     },
     selectNode: function selectNode(nid) {
       this.activeNode = nid;
+      console.log('select node', nid, (0, _trees.getNode)(nid));
       this.$emit('select', (0, _trees.getNode)(nid));
     },
     setupIcons: function setupIcons() {
