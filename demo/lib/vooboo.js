@@ -29238,28 +29238,28 @@ exports.default = {
     FormField: _field2.default
   },
   computed: {
-    formFields: function formFields() {},
+    formFields: function formFields() {
+      var _this = this;
+
+      return (0, _lodash.keys)(this.fields).map(function (name) {
+        return (0, _lodash.assign)({}, _this.fields[name], { name: name });
+      });
+    },
     isValid: function isValid() {
       return true;
     }
   },
   methods: {
     buildFormFields: function buildFormFields() {
-      var _this = this;
+      var _this2 = this;
 
       this.fields = {};
       var Fields = Object.assign({}, this.$options.Fields || {}, this.Fields || {});
       Object.keys(Fields).forEach(function (key) {
         if (Fields[key] instanceof _Field2.default) {
-          _this.fields[key] = Fields[key];
+          _this2.fields[key] = Fields[key];
         }
       });
-      // if( Fields ){
-      //   let { fields }=Fields;
-      //   if( fields && Array.isArray( fields )){
-      //     this.form.fields=fields.map( name=>this.buildFormField( name, Fields[ name ]))
-      //   }
-      // }
     },
     load: function load(instance) {},
     submit: function submit() {}
@@ -29520,9 +29520,12 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "vue-form"
-  }, [_vm._t("default", _vm._l((_vm.form.fields), function(field) {
+  }, [_vm._t("default", _vm._l((_vm.formFields), function(field) {
     return _c('form-field', {
-      key: field.id
+      key: field.name,
+      attrs: {
+        "field": field
+      }
     })
   }))], 2)
 },staticRenderFns: []}
@@ -32138,7 +32141,7 @@ exports.default = {
     },
     selectNode: function selectNode(nid) {
       this.activeNode = nid;
-      this.$emit('select', nid);
+      this.$emit('select', (0, _trees.getNode)(nid));
     },
     setupIcons: function setupIcons() {
       var _this3 = this;
