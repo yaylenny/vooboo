@@ -1,6 +1,7 @@
 <script>
   import FormField from "./field/field.vue";
   import FieldClass from "../../forms/fields/Field.js";
+
   import { isPlainObject, assign, keys } from "lodash";
 
   let mods=[];
@@ -28,7 +29,9 @@
     },
     computed:{
       formFields(){
-
+        return keys( this.fields ).map( name=>{
+          return assign({}, this.fields[ name ], { name })
+        });
       },
       isValid(){
         return true;
@@ -43,12 +46,6 @@
             this.fields[ key ]=Fields[key];
           }
         })
-        // if( Fields ){
-        //   let { fields }=Fields;
-        //   if( fields && Array.isArray( fields )){
-        //     this.form.fields=fields.map( name=>this.buildFormField( name, Fields[ name ]))
-        //   }
-        // }
       },
       load( instance ){
 
@@ -68,5 +65,6 @@
 <template lang="pug">
   .vue-form
     slot
-      form-field( v-for="field in form.fields" :key="field.id")
+      form-field( v-for="field in formFields" :key="field.name" :field="field")
+
 </template>

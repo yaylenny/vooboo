@@ -91,7 +91,7 @@ export default{
     },
     selectNode( nid ){
       this.activeNode=nid;
-      this.$emit( 'select', nid );
+      this.$emit( 'select', getNode(nid) );
     },
     setupIcons(){
       let { icons }=this;
