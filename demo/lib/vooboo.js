@@ -32141,8 +32141,8 @@ exports.default = {
     },
     selectNode: function selectNode(nid) {
       this.activeNode = nid;
-      console.log('select node', nid, (0, _trees.getNode)(nid));
-      this.$emit('select', (0, _trees.getNode)(nid));
+      console.log('select node', nid, (0, _trees.getNode)(this.tid, nid));
+      this.$emit('select', (0, _trees.getNode)(this.tid, nid));
     },
     setupIcons: function setupIcons() {
       var _this3 = this;
