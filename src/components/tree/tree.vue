@@ -14,7 +14,7 @@ export default{
     iconPrefix: { type: String, default: 'fa-' },
     closedIcon:{ type: String, default: 'folder' },
     openIcon:{ type: String, default: 'folder-open' },
-    leafIcon:{ type: String, default: 'leaf' },
+    leafIcon:{ type: String, default: 'file' },
     expandIcon:{ type: String, default: 'caret-down' },
     retractIcon:{ type: String, default: 'caret-right' },
     size: { type: String, default: 'default' },
@@ -65,6 +65,7 @@ export default{
         if( isNumber( nid ) && getNode( this.tid, nid )){
           this.activeNodeID=nid;
         }
+        else this.activeNodeID=0;
       }
     },
     baseIconClass(){
@@ -110,11 +111,11 @@ export default{
         let nodes=getNodes( this.tid );
         let node=nodes.find( n=>n[ this.idProp ]==this.value );
         if( node ){
-          console.log( 'node found', node )
           this.activeNode=node;
+          return;
         }
       }
-      else console.log( 'no value found')
+      this.activeNode=null;
     }
 
   },

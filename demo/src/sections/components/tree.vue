@@ -49,6 +49,7 @@
             v-model="activeID"
             label-prop="name"
             nodes-prop="children")
+        p: vb-button( @click="activeID=0") Unset active
       .column
         .hero: .hero-body: .container
           h1.title.is-5 vb-tree
