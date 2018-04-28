@@ -17,6 +17,7 @@ export default{
     leafIcon:{ type: String, default: 'file' },
     expandIcon:{ type: String, default: 'caret-down' },
     retractIcon:{ type: String, default: 'caret-right' },
+    retractAll:{ type: Boolean, default: true },
     size: { type: String, default: 'default' },
     parent:{},
     value:{} // v-model
@@ -139,6 +140,7 @@ export default{
     :source="treeNodes"
     :root="root"
     :activeNodeID="activeNodeID"
+    :retract-all="retractAll"
     :ico="ico"
     :baseIconClass="baseIconClass"
     @select="selectNode")

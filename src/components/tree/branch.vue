@@ -13,6 +13,7 @@
       ico:{ type: Object, required: true }, // classnames already mapped
       icon: String,
       baseIconClass: String,
+      retractAll:{ type: Boolean, default: true },
       id: {},
       nodes: Array,
       raw:{}, // node options as passed in
@@ -22,7 +23,7 @@
     },
     data(){
       return {
-        isExpanded: this.expanded,
+        isExpanded: this.retractAll ? (this.source ? true : false ): this.expanded,
         nid: 0
       };
     },
@@ -115,6 +116,7 @@
         :label="node.label"
         :nodes="node.nodes"
         :raw="node"
+        :retract-all="retractAll"
         :activeNodeID="activeNodeID"
         @select="selectPassThrough")
 </template>
