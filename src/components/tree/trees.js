@@ -1,10 +1,6 @@
 
 let trees=new Map;
 
-let counter=()=>{
-  let c=0;
-  let f=()=>++c;
-}
 
 let _uid=0;
 let uid=()=>++_uid;
@@ -33,13 +29,17 @@ function registerNode( node, tid ){
 }
 
 function getNode( tid, nid ){
+  return getNodes( tid ).find( n=>n.nid===nid )
+}
+
+function getNodes( tid ){
   let treeData=trees.get( tid );
-  if( !treeData ) return console.error( 'Tree not found', tid, nid )
-  return treeData.nodes.find( n=>n.nid===nid )
+  return treeData ? treeData.nodes : [];
 }
 
 export{
   getNode,
+  getNodes,
   registerTree,
   registerNode
 }

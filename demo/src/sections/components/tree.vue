@@ -27,7 +27,8 @@
     data(){
       return {
         fsSource,
-        fsString: JSON.stringify( fsSource )
+        fsString: JSON.stringify( fsSource ),
+        activeID: 34
       };
     },
     components:{},
@@ -43,9 +44,11 @@
   section.page
     .container: .columns
       .column.is-3
-        .card: vb-tree( :source="fsSource"
-          label-prop="name"
-          nodes-prop="children")
+        .card
+          vb-tree( :source="fsSource"
+            v-model="activeID"
+            label-prop="name"
+            nodes-prop="children")
       .column
         .hero: .hero-body: .container
           h1.title.is-5 vb-tree

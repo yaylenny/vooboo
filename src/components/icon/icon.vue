@@ -29,7 +29,7 @@
     computed:{
       iconClass(){
         let ret=[this.base+this.iconString];
-        [ 'small', 'medium', 'large'].forEach( size=>{console.log( 'uya', camelCase( `is-${size}` ), this[ camelCase( `is-${size}` ) ] )
+        [ 'small', 'medium', 'large'].forEach( size=>{
           if( this[ camelCase( `is-${size}` ) ]){
             ret.push( this[ size ] );
             return false;

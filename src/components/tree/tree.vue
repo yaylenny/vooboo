@@ -1,5 +1,5 @@
 <script>
-import { registerTree, getNode } from "./trees.js";
+import { registerTree, getNode, getNodes } from "./trees.js";
 import { isNumber, isPlainObject } from "lodash";
 import branch from "./branch.vue";
 
@@ -18,7 +18,8 @@ export default{
     expandIcon:{ type: String, default: 'caret-down' },
     retractIcon:{ type: String, default: 'caret-right' },
     size: { type: String, default: 'default' },
-    parent:{}
+    parent:{},
+    value:{} // v-model
   },
   data(){
     let icons={
@@ -90,9 +91,11 @@ export default{
       return treeNode;
     },
     selectNode( nid ){
+      let node=getNode( this.tid, nid );
+      if( !node ) return console.error("NODE NOT FOUND, WTF???")
       this.activeNode=nid;
-      console.log( 'select node', nid, getNode( this.tid, nid ))
-      this.$emit( 'select', getNode(this.tid, nid) );
+      this.$emit( 'select', node.node );
+      this.$emit('input', node.node[ this.idProp ]);
     },
     setupIcons(){
       let { icons }=this;
@@ -100,6 +103,18 @@ export default{
       [ 'closed', 'open', 'expand', 'retract', 'leaf' ].forEach( n=>{
         this.$set( this.ico, n, `${base} ${prefix}${icons[n]}`)
       });
+    },
+    onValueChange(){
+      if( this.value ){
+        console.log( 'onValueChange', this.value )
+        let nodes=getNodes( this.tid );
+        let node=nodes.find( n=>n[ this.idProp ]==this.value );
+        if( node ){
+          console.log( 'node found', node )
+          this.activeNode=node;
+        }
+      }
+      else console.log( 'no value found')
     }
 
   },
@@ -107,7 +122,12 @@ export default{
     this.tid=registerTree( this );
     this.setupIcons();
   },
-  watch:{}
+  mounted(){
+    this.onValueChange();
+  },
+  watch:{
+    value: 'onValueChange'
+  }
 }
 </script>
 

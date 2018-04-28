@@ -58,7 +58,7 @@
     methods:{
       getIcon( state ){// expand/ retract/open/closed /leaf  ( allow for override per level )
         let node=this.raw && this.raw.node;
-        console.log( 'geticon', state, node )
+        // console.log( 'geticon', state, node )
         let value=node && node[ state ];
         if( value ){
           return this.baseIconClass+value;
