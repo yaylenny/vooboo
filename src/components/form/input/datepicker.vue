@@ -13,12 +13,9 @@
       format:{ type: String, default: 'MMMM DD, YYYY'},
       hideInput:{ type: Boolean, default: false }, // true and the calendar is always visible
       placeholder: String,
-      // name: String,
       icon: String,
       iconsLeft: [ String, Array ],
-      iconsRight: [ String, Array ],
-      // isPrimary: Boolean,
-      // value:{}
+      iconsRight: [ String, Array ]
     },
     data(){
 
@@ -28,9 +25,6 @@
           year: 2000,
           day: 1
         },
-        // activeMonth:0,
-        // activeYear:2014,
-        // activeDay: 1,
         dayNames: moment.weekdaysShort() ,
         textInputValue: '',
         datepickerVisible: this.hideInput,
@@ -63,7 +57,7 @@
         }
         return moment({ year, month, date: 1 });
       },
-      activeRange(){// an array of moments representing the visible calenadr month
+      activeRange(){// an array of moments representing the visible calendar month
         let m=moment( this.activeStart );
         let end=moment( this.activeEnd );
         let arr=[];
@@ -113,10 +107,11 @@
       },
       hideDatepicker(){
         if( !this.hideInput ) this.datepickerVisible=false;
+        // if( this.mouseHandler ) window.removeEventListener( 'click', this.mouseHandler );
       },
       inputFocus( e ){
         e.target.select();
-        this.datepickerVisible=true;
+        this.showDatepicker();
         console.log( 'focus')
       },
       inputBlur( e ){
@@ -140,7 +135,18 @@
         let dateString=this.formatValue( m );
         this.$emit('input', moment.isMoment( this.value ) ? m : dateString );
         this.textInputValue=dateString;
-        this.hideDatepicker();
+        // this.hideDatepicker();
+      },
+      showDatepicker(){
+        this.datepickerVisible=true;
+        // this.mouseHandler=(e)=>{
+        //   console.log( 'mousehandler');
+        //   this.hideDatepicker();
+        // }
+        // window.addEventListener('click', this.mouseHandler );
+        // this.$nextTick(()=>{
+        // })
+
       },
       jumpMonth( month ){
         let year=this.active.year;
@@ -169,6 +175,7 @@
     },
     created(){
       this.writeActiveData();
+      this.mouseHandler=null;
     },
     watch:{
       value: 'writeActiveData'
@@ -176,12 +183,13 @@
   }
 </script>
 <template>
-  <div class="datepicker-control">
+  <div class="datepicker-control" @click.stop="">
     <text-input
       v-show="!hideInput"
       :value="textInputValue"
       @focus="inputFocus"
-      @keyup.native.esc="datepickerVisible=false"
+      @blur="inputBlur"
+      @keyup.native.esc="hideDatepicker"
       :icon="icon"
       :icons-left="iconsLeft"
       :icons-right="iconsRight"

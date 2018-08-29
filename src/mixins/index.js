@@ -2,6 +2,7 @@
 
 import { isPlainObject, isFunction, isString, assign, keys, isArray, hasIn, kebabCase } from "lodash";
 import localDataConsumer from "./localDataConsumer.vue";
+import calendar from "./calendar.vue";
 
 const MODS={
   colors:['isPrimary','isInfo','isSuccess','isDanger','isWarning','isText','isDark','isLight', 'isWhite', 'isBlack'],
@@ -145,5 +146,6 @@ function Bulma( id, ...mods ){// returns an object to be used as a mixin
 
 export {
   Bulma,
-  localDataConsumer
+  localDataConsumer,
+  calendar
 };

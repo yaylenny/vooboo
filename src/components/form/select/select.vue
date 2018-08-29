@@ -28,8 +28,8 @@
 <template>
   <div class="select">
     <select :value="value" @change="$emit('input', $event.target.value )">
-      <option v-for="option in selectOptions" :value="option.value">
-        {{option.text || option.title}}
+      <option v-for="option in selectOptions" :value="(option.value || option )">
+        {{option.text || option.title || option }}
       </option>
     </select>
   </div>

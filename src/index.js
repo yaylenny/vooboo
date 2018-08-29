@@ -2,7 +2,8 @@ import { kebabCase } from "lodash";
 import {
   card,
   CardHeader,
-
+  hero,
+  level,
   icon,
   autocomplete,
   button,
@@ -31,7 +32,8 @@ import {
 
 import { /*  *  *     MIXINS    *   *   */
   Bulma,
-  localDataConsumer
+  localDataConsumer,
+  calendar
 } from "./mixins";
 
 import models from "./models"; // import/export default object
@@ -41,7 +43,8 @@ import forms from "./forms"; // form fields ( as opposed to components below )
 let components={
   card,
   CardHeader,
-
+  hero,
+  level,
   icon,
   autocomplete,
   button,
@@ -79,12 +82,14 @@ export default{
 export{
   Bulma,
   localDataConsumer,
+  calendar,
   forms,
   models,
 
   card,
   CardHeader,
-
+  hero,
+  level,
   icon,
   autocomplete,
   button,

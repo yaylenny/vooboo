@@ -4,6 +4,11 @@ import { /*  *  *     CARD    *   *   */
   CardHeader
 } from "./card";
 
+import { /*  *  *     LAYOUT    *   *   */
+  hero,
+  level
+} from "./layout";
+
 import { /*  *  *     ICON    *   *   */
   icon
 } from "./icon";
@@ -54,7 +59,8 @@ import { /*  *  *     PANEL    *   *   */
 export{
   card,
   CardHeader,
-
+  hero,
+  level,
   icon,
   autocomplete,
   button,
@@ -71,7 +77,7 @@ export{
   modal,
 
   pagination,
-  
+
   panel,
   PanelHeading,
   PanelTabs,
