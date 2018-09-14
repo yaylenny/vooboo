@@ -2,9 +2,11 @@ import Home from "./sections/main.vue";
 
 import Components from "./sections/components/components.vue";
 import ComponentsOverview from "./sections/components/overview.vue";
-import Table from "./sections/components/table.vue"
-import Tree from "./sections/components/tree.vue"
-import Modal from "./sections/components/modal.vue"
+import Table from "./sections/components/table.vue";
+import Tree from "./sections/components/tree.vue";
+import Modal from "./sections/components/modal.vue";
+import AutoComplete from "./sections/autocomplete.vue";
+import Datepicker from "./sections/datepicker.vue";
 
 import Forms from "./sections/forms.vue";
 import Models from "./sections/models.vue";
@@ -16,6 +18,31 @@ const routes=[
     name: 'home'
   },
   {
+    path: '/components/autocomplete',
+    name: 'components/autocomplete',
+    component: AutoComplete
+  },
+  {
+    path: '/components/datepicker',
+    name: 'components/datepicker',
+    component: Datepicker
+  },
+  {
+    path: '/components/table',
+    name: 'components/table',
+    component: Table
+  },
+  {
+    path: '/components/modal',
+    name: 'components/modal',
+    component: Modal
+  },
+  {
+    path: '/components/tree',
+    name: 'components/tree',
+    component: Tree
+  },
+  {
     path: '/components',
     component: Components,
     children:[
@@ -23,21 +50,6 @@ const routes=[
         path: '',
         name: 'components',
         component: ComponentsOverview
-      },
-      {
-        path: 'modal',
-        name: 'components/modal',
-        component: Modal
-      },
-      {
-        path: 'table',
-        name: 'components/table',
-        component: Table
-      },
-      {
-        path: 'tree',
-        name: 'components/tree',
-        component: Tree
       },
     ]
   },

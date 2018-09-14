@@ -17,6 +17,13 @@
           { name: 'forms', title: 'Forms' },
           { name: 'models', title: 'Models'}
         ],
+        menuItems:[
+          { route: 'components/autocomplete', title: 'Auto Complete' },
+          { route: 'components/datepicker', title: 'Date picker' },
+          { route: 'components/table', title: 'Table' },
+          { route: 'components/modal', title: 'Modal' },
+          { route: 'components/tree', title: 'Tree' },
+        ]
       };
     },
     computed:{
@@ -45,18 +52,40 @@
 
 <template lang="pug">
   .demo
-    .hero.is-black
-      .hero-body: .container
-        h1.title VooBoo
-        h2.subtitle Javascript components and utilities using the Bulma css framework
-      .hero-foot: .container: .tabs.is-boxed
-        ul
-          li( v-for="tab in tabs" :class="{'is-active': tab.active }")
-            router-link( :to="{ name: tab.name }") {{tab.title}}
-    router-view()
+    .sidebar
+      .hero.is-primary.is-small
+        .hero-body
+          h1.title.is-5 VooBoo
+      .sidebar-menu: .menu
+        p.menu-label Components
+        ul.menu-list
+          li( v-for="item in menuItems" )
+            router-link( :to="{ name: item.route }" :class="{'is-active': item.route===$route.name }") {{item.title}}
+    .main
+      router-view()
 </template>
 
 <style lang="scss">
+  .demo{
+    display: flex;
+    position: fixed;
+    align-items: stretch;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    .sidebar{
+      flex: 1;
+      border-right: 1px solid #ddd;
+      .sidebar-menu{
+        padding: 1rem;
+      }
+    }
+    .main{
+      flex: 5;
+      overflow: auto;
+    }
+  }
   code{
     white-space: pre-wrap;
   }
